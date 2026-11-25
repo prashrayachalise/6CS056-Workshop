@@ -1,11 +1,4 @@
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Student Details</title>
-</head>
-<body>
+<x-layouts.app title="Student Details">
 
     <h1>Student Details</h1>
 
@@ -19,15 +12,22 @@
 
     <p><strong>Address:</strong> {{ $student->address }}</p>
 
-    <p><strong>Date of Birth:</strong> {{ $student->date_of_birth }}</p>
+    <p>
+        <strong>Date of Birth:</strong>
+        {{ $student->date_of_birth?->format('d M Y') }}
+    </p>
 
-    <a href="/students/{{ $student->id }}/edit">
+    <p>
+        <strong>Age:</strong>
+        {{ $student->age ?? 'Not available' }}
+    </p>
+
+    <a href="{{ route('students.edit', $student) }}" class="btn">
         Edit Student
     </a>
 
-    <br><br>
+    <a href="{{ route('students.index') }}">
+        Back to Students
+    </a>
 
-    <a href="/students">Back to Students</a>
-
-</body>
-</html>
+</x-layouts.app>
